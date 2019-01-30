@@ -1,0 +1,15 @@
+---
+- hosts: SW1
+  connection: local
+  gather_facts: no
+  
+  tasks:
+  - name: "Get Dell OS Version from Switch"
+    dellos10_command:
+      commands: ['show version']
+      provider: "{{ cli }}"
+    register: show_ver
+
+  - debug: var=show_ver
+
+

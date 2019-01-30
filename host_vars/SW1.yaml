@@ -1,0 +1,5 @@
+hostname: SW1
+ansible_ssh_user: admin 
+ansible_ssh_pass: admin 
+ansible_network_os: dellos10
+

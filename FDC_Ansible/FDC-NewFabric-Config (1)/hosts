@@ -1,0 +1,2 @@
+NewFabric-LEAF-1 ansible_host=10.67.194.1 ansible_network_os="dellos10" ansible_ssh_user=bokony ansible_ssh_pass=Admin_123
+NewFabric-LEAF-2 ansible_host=10.67.194.2 ansible_network_os="dellos10" ansible_ssh_user=bokony ansible_ssh_pass=Admin_123
