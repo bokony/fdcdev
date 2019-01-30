@@ -1,0 +1,163 @@
+cli:
+  auth_pass: Admin_123
+  authorize: true
+  host: '{{ ansible_host }}'
+  password: Admin_123
+  username: bokony
+dellos-copy-config:
+  file_name: NewFabric-LEAF-2.j2
+  file_path: roles/Dell-Networking.dellos-copy-config/templates/
+dellos_bgp:
+  asn: 64626
+  best_path:
+    as_path: multipath-relax
+  graceful_restart: true
+  maxpath_ebgp: 2
+  neighbor:
+  - adv_interval: 1
+    fall_over: present
+    name: spine-leaf
+    timer: 3 9
+    type: peergroup
+  - admin: up
+    ip: 10.30.10.3
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64444
+    type: ipv4
+  - admin: up
+    ip: 10.30.10.4
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64444
+    type: ipv4
+  redistribute:
+  - address_type: ipv4
+    route_map_name: spine-leaf
+    route_type: connected
+dellos_interface:
+  ethernet 1/1/1:
+    fanout: 10g-4x
+  ethernet 1/1/10:
+    admin: up
+  ethernet 1/1/11:
+    admin: up
+  ethernet 1/1/12:
+    admin: up
+  ethernet 1/1/13:
+    admin: up
+  ethernet 1/1/14:
+    admin: up
+  ethernet 1/1/15:
+    admin: up
+  ethernet 1/1/16:
+    admin: up
+  ethernet 1/1/17:
+    admin: up
+  ethernet 1/1/18:
+    admin: up
+  ethernet 1/1/19:
+    admin: up
+  ethernet 1/1/1:1:
+    admin: up
+    desc: Uplink
+    ip_and_mask: 10.30.10.1/24
+    switchport: false
+  ethernet 1/1/1:2:
+    admin: up
+    desc: Uplink
+    ip_and_mask: 10.30.10.2/24
+    switchport: false
+  ethernet 1/1/1:3:
+    admin: up
+  ethernet 1/1/1:4:
+    admin: up
+  ethernet 1/1/2:
+    admin: up
+    desc: VLT to NewFabric-LEAF-1 1/1/2
+    switchport: false
+  ethernet 1/1/20:
+    admin: up
+  ethernet 1/1/21:
+    admin: up
+  ethernet 1/1/22:
+    admin: up
+  ethernet 1/1/23:
+    admin: up
+  ethernet 1/1/24:
+    admin: up
+  ethernet 1/1/25:
+    admin: up
+  ethernet 1/1/26:
+    admin: up
+  ethernet 1/1/27:
+    admin: up
+  ethernet 1/1/28:
+    admin: up
+  ethernet 1/1/29:
+    admin: up
+  ethernet 1/1/3:
+    admin: up
+    desc: VLT to NewFabric-LEAF-1 1/1/3
+    switchport: false
+  ethernet 1/1/30:
+    admin: up
+  ethernet 1/1/31:
+    admin: up
+  ethernet 1/1/32:
+    admin: up
+  ethernet 1/1/4:
+    admin: up
+  ethernet 1/1/5:
+    admin: up
+  ethernet 1/1/6:
+    admin: up
+  ethernet 1/1/7:
+    admin: up
+  ethernet 1/1/8:
+    admin: up
+  ethernet 1/1/9:
+    admin: up
+  loopback 0:
+    admin: up
+    ip_and_mask: 10.0.2.2/32
+dellos_lag: {}
+dellos_lldp:
+  enable: true
+dellos_prefixlist:
+- entries:
+  - condition_list:
+    - condition: ge
+      prelen: '24'
+    mask: '16'
+    net_num: 10.0.0.0
+    number: 10
+    permit: true
+    state: present
+  name: spine-leaf
+  state: present
+  type: ipv4
+dellos_route_map:
+  route_map:
+  - match:
+    - ip_type: ipv4
+      prefix_list: spine-leaf
+    name: spine-leaf
+    permit: true
+    seq_num: 10
+dellos_system:
+  hostname: NewFabric-LEAF-2
+dellos_vlt:
+  discovery_intf: 1/1/2-1/1/3
+  discovery_intf_state: present
+  domain: 127
+  peer_routing: false
+dellos_xstp:
+  enable: true
+  intf: {}
+  rstp:
+    bridge_priority: 4096
+  type: rstp
+fdc_cli_commands:
+  file_name: NewFabric-LEAF-2.j2
+hostname: NewFabric-LEAF-2

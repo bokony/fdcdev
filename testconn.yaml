@@ -1,0 +1,7 @@
+---
+# Test connection to managed switch
+  hosts: SW1
+  tasks:
+   -name: test connection
+    ping:
+

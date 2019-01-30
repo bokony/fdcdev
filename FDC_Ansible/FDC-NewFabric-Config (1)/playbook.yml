@@ -1,0 +1,26 @@
+- connection: network_cli
+  gather_facts: false
+  hosts:
+  - NewFabric-LEAF-1
+  - NewFabric-LEAF-2
+  roles:
+  - Dell-Networking.dellos-copy-config
+  - dell-networking.dellos-interface
+  - dell-networking.dellos-vlan
+  - dell-networking.dellos-lag
+  - dell-networking.dellos-vlt
+  - dell-networking.dellos-lldp
+  - dell-networking.dellos-system
+  - dell-networking.dellos-users
+  - dell-networking.dellos-route-map
+  - dell-networking.dellos-ecmp
+  - dell-networking.dellos-prefix-list
+  - dell-networking.dellos-bgp
+  - dell-networking.dellos-xstp
+  - dell-networking.dellos-dcb
+  tasks:
+  - dellos10_config:
+      src: '{{ fdc_cli_commands.file_name }}'
+    name: FDC Custom Commands
+    register: result
+    when: ansible_network_os == "dellos10"
