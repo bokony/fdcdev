@@ -1,5 +1,5 @@
 ---
-- hosts: SW1 
+- hosts: switches 
   connection: local
   gather_facts: no
 

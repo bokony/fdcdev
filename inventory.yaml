@@ -1,3 +1,5 @@
 [switches]
-SW1 ansible_host=192.168.122.21
+SW1 ansible_host=192.168.122.10
+SW2 ansible_host=192.168.122.11
+
 
